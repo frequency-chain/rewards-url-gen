@@ -1,0 +1,37 @@
+name: Verify PR Commit
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    name: 'Build/Lint/Test'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - name: Install Deps 💾
+        run: npm ci
+
+      - name: Build 🛠️
+        run: npm run build
+
+      - name: Lint 🧶
+        run: npm run lint
+
+      - name: Run Tests 🧪
+        run: npm test

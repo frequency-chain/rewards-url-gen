@@ -4,6 +4,12 @@
 
 This document provides technical details for generating a claim reward URL using the **Frequency** parachain on the **Polkadot** blockchain network, specifically tailored for social media providers within the **Frequency** ecosystem. The URL is designed to enable reward claims and is intended to be generated programmatically by social media providers.
 
+### Quick Start
+
+- [index.ts](./src/index.ts) is the basic setup on encoding and decoding tokens.
+- `npm run dev:encode -- --seedPhrase "<Seed Phrase>" --msaId <MSA Id>` will demonstrate generating a token.
+- `npm run dev:decode <token here>` will demonstrate decoding a token as well as testing the validity of the token signature and payload structure.
+
 ## URL Structure
 
 The claim reward URL is structured as follows:
