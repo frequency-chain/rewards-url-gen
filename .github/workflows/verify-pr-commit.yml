@@ -9,11 +9,8 @@ on:
 
 jobs:
   lint:
-    name: '[Backend] Build/Lint/Test'
+    name: 'Build/Lint/Test'
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ${{ env.working-directory }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -25,16 +22,16 @@ jobs:
         with:
           node-version: 18
           cache: 'npm'
-          cache-dependency-path: backend/package-lock.json
+          cache-dependency-path: package-lock.json
 
-      - name: Install Deps 💾 [Backend]
+      - name: Install Deps 💾
         run: npm ci
 
-      - name: Build 🛠️ [Backend]
+      - name: Build 🛠️
         run: npm run build
 
-      - name: Lint 🧶 [Backend]
+      - name: Lint 🧶
         run: npm run lint
 
-      - name: Run Tests 🧪 [Backend]
+      - name: Run Tests 🧪
         run: npm test
