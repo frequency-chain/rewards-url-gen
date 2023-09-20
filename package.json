@@ -1,0 +1,48 @@
+{
+  "name": "rewards-url-gen",
+  "version": "1.0.0",
+  "description": "Example for generating and decoding reward URLs",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "lint": "eslint \"{src,tools}/**/*.ts\" && npx tsc --noEmit",
+    "lint:quiet": "eslint --quiet \"{src,apps,libs,test}/**/*.ts\" && npx tsc --noEmit --quiet",
+    "format": "eslint \"{src,tools}/**/*.ts\" --fix",
+    "dev:decode": "ts-node-esm --project ./tsconfig.all.json tools/decode.ts",
+    "dev:encode": "ts-node-esm --project ./tsconfig.all.json tools/encode.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AmplicaLabs/rewards-url-gen.git"
+  },
+  "author": "Amplica Labs",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/AmplicaLabs/rewards-url-gen/issues"
+  },
+  "homepage": "https://github.com/AmplicaLabs/rewards-url-gen#readme",
+  "devDependencies": {
+    "@polkadot/keyring": "^12.5.1",
+    "@types/minimist": "^1.2.2",
+    "eslint": "^8.49.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-import-resolver-typescript": "^3.6.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "minimist": "^1.2.8",
+    "prettier": "^3.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.4"
+  },
+  "dependencies": {
+    "@polkadot/util": "^12.5.1",
+    "@polkadot/util-crypto": "^12.5.1",
+    "class-validator": "^0.14.0"
+  }
+}
