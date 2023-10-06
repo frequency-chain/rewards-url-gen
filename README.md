@@ -44,7 +44,7 @@ To generate the claim reward URL using the *Polkadot JS API*, social media provi
 
 The payload is:
 
-*PUBLIC_KEY* + "." + *MSA_ID*
+*PUBLIC_KEY_SS58* + "." + *MSA_ID*
 
 where the *DELIMITER* is "."
 
@@ -55,7 +55,11 @@ Input:
 `PUBLIC_KEY="5CiPPseXPECbkjWCa6MnjNokrgYjMqmKndv2rSnekmSK2DjL"
 MSA_ID="1"`
 
-NOTE: The public key is converted to *Frequency MAINNET* but is the same underlying address: `f6YBWR8RZmcd1k6s93PvkaJmhK79pQUbGuU9xjD5GPjbVFRLp`
+*NOTE*: The public key uses SS58 formatting and MUST use the proper prefix:
+- Mainnet: 90 (default for the tool)
+- Testnet: 42
+
+The encode tool will default to *Frequency MAINNET* (use `--chainPrefix` to use a different encoding), but is the same underlying address: `f6YBWR8RZmcd1k6s93PvkaJmhK79pQUbGuU9xjD5GPjbVFRLp`
 
 Payload:
 
@@ -112,7 +116,7 @@ async function main() {
     // Initialize the Polkadot JS library
     await cryptoWaitReady();
 
-    // Chain prefix for Frequency MAINNET is 90
+    // Chain prefix for Frequency MAINNET is 90. Testnet is 42.
     const chainPrefix = 90;
 
     // Create a key pair from a seed phrase
