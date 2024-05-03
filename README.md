@@ -26,7 +26,7 @@ For the provider public key "5CiPPseXPECbkjWCa6MnjNokrgYjMqmKndv2rSnekmSK2DjL" a
 
 ## Prerequisites
 
-To generate the claim reward URL using the *Polkadot JS API*, social media providers should ensure the following dependencies are imported:
+To generate the claim reward URL using the _Polkadot JS API_, social media providers should ensure the following dependencies are imported:
 
 - `@polkadot/keyring`: Library for key pair management
 - `@polkadot/util`: Utility functions for Polkadot types
@@ -44,9 +44,9 @@ To generate the claim reward URL using the *Polkadot JS API*, social media provi
 
 The payload is:
 
-*PUBLIC_KEY_SS58* + "." + *MSA_ID*
+_PUBLIC_KEY_SS58_ + "." + _MSA_ID_
 
-where the *DELIMITER* is "."
+where the _DELIMITER_ is "."
 
 e.g.
 
@@ -55,11 +55,12 @@ Input:
 `PUBLIC_KEY="5CiPPseXPECbkjWCa6MnjNokrgYjMqmKndv2rSnekmSK2DjL"
 MSA_ID="1"`
 
-*NOTE*: The public key uses SS58 formatting and MUST use the proper prefix:
+_NOTE_: The public key uses SS58 formatting and MUST use the proper prefix:
+
 - Mainnet: 90 (default for the tool)
 - Testnet: 42
 
-The encode tool will default to *Frequency MAINNET* (use `--chainPrefix` to use a different encoding), but is the same underlying address: `f6YBWR8RZmcd1k6s93PvkaJmhK79pQUbGuU9xjD5GPjbVFRLp`
+The encode tool will default to _Frequency MAINNET_ (use `--chainPrefix` to use a different encoding), but is the same underlying address: `f6YBWR8RZmcd1k6s93PvkaJmhK79pQUbGuU9xjD5GPjbVFRLp`
 
 Payload:
 
@@ -80,13 +81,13 @@ Signature:
 
 The payload and signature are then combined before being encoded using URL-safe Base64.
 
-*PAYLOAD* + "." + *SIGNATURE*
+_PAYLOAD_ + "." + _SIGNATURE_
 
 `f6YBWR8RZmcd1k6s93PvkaJmhK79pQUbGuU9xjD5GPjbVFRLp.1.0x4642fee82e5c5cc9340f61fe4a03b760a9305d909d7619ca22d13ba984a10f5fd4d3dd0c0eaf7538a48d4178dc8f4f20d0357f5994b7d712ad593bb46b63fc8c`
 
 ## Encoding and Decoding
 
-The claim reward token involves encoding and decoding data, with the token encoded using URL-safe Base64 encoding per [RFC4648](https://datatracker.ietf.org/doc/html/rfc4648).   The Base64 encoding may produce characters ("+", "/", "=") that are **not** safe to use in URLs so these characters are substituted in the encoding/decoding process.
+The claim reward token involves encoding and decoding data, with the token encoded using URL-safe Base64 encoding per [RFC4648](https://datatracker.ietf.org/doc/html/rfc4648). The Base64 encoding may produce characters ("+", "/", "=") that are **not** safe to use in URLs so these characters are substituted in the encoding/decoding process.
 
 After URL-safe Base64 encoding, the token is:
 
@@ -94,7 +95,7 @@ After URL-safe Base64 encoding, the token is:
 
 ## Applying the URL format
 
-`https://claimfrequency.xyz/claim?token=` + *TOKEN*
+`https://claimfrequency.xyz/claim?token=` + _TOKEN_
 
 The final URL:
 
@@ -111,29 +112,29 @@ The final URL:
 Here's an example of the code needed to generate the claim reward URL:
 
 ```typescript
-
 async function main() {
-    // Initialize the Polkadot JS library
-    await cryptoWaitReady();
+  // Initialize the Polkadot JS library
+  await cryptoWaitReady();
 
-    // Chain prefix for Frequency MAINNET is 90. Testnet is 42.
-    const chainPrefix = 90;
+  // Chain prefix for Frequency MAINNET is 90. Testnet is 42.
+  const chainPrefix = 90;
 
-    // Create a key pair from a seed phrase
-    const keyPair = createKeyPairFromSeedPhrase(chainPrefix, "entire material egg meadow latin bargain dutch coral blood melt acoustic thought");
+  // Create a key pair from a seed phrase
+  const keyPair = createKeyPairFromSeedPhrase(chainPrefix, 'entire material egg meadow latin bargain dutch coral blood melt acoustic thought');
 
-    // The user's MSA/DSNP id
-    const msaId = "1234567890";
+  // The user's MSA/DSNP id
+  const msaId = '1234567890';
 
-    // Generate the claim reward token
-    const token = encodeToken(keyPair, msaId);
-    console.log("token=" + token);
-};
+  // Generate the claim reward token
+  const token = encodeToken(keyPair, msaId);
+  console.log('token=' + token);
+}
 
 main();
 ```
+
 ## See Also
 
-**Frequency** - https://github.com/LibertyDSNP/frequency
+**Frequency** - https://github.com/frequency-chain/frequency
 
 **Polkadot** - https://wiki.polkadot.network/docs/learn-index
